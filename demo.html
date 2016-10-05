@@ -29,5 +29,27 @@
       result.innerHTML = addNumbers;
     }
   }
+    var result = document.getElementById("result");
+    result.innerHTML = "Test";
+    console.log(result);
+
+    const N = 10;
+    var a = [];
+    for (var i = 0; i < N; i++) {
+      a[i] = [];
+      for (j=0; j < N; j++) {
+        a[i][j] = i + ", " + j;
+      }
+    }
+    var str = "<table cellpadding='5' cellspacing='5'>";
+      for (var i = 0; i < N; i++) {
+        str += "<tr>";
+        for (j=0; j < N; j++) {
+          str += "<td>" + a[i][j] + "</td>";
+        }
+        str += "</tr>";
+        }
+    str += "</table>";
+    result.innerHTML = str;
 </script>
 </html>
