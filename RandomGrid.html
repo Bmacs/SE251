@@ -5,9 +5,15 @@
   <title>Random Grid</title>
 </head>
 <body>
+  <input type="text" id="num" />
   <input type="button" id="Generate" value="Generate Grid">
 </body>
 <script type="text/javascript">
+  var randomNumber = function (min, max)
+  {
+    return Math.floor (Math.random() * (max - min + 1)) + min;
+  }
+
   
 </script>
 </html>
