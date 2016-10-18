@@ -5,36 +5,44 @@
   <title>Math Problems</title>
 </head>
 <body>
-  <input type="text" id="num" />
   <input type="button" id="check" value="Check Answers">
+
+<div id="results">
+</div>
+</body>
+</html>
 
 
 <script type="text/javascript">
 
 N = 20;
 
-var firstNum = Math.floor(Math.random(1,50))
-var secNum = Math.floor(Math.random(1,50))
+var random = function (min, max)
+{
+  return Math.floor (Math.random() * (max - min + 1)) + min;
+}
 
-var operators = ["+", "=", "*", "/"]
-var oprand =  Math.floor(Math.random(0,3))
+var firstNum = random(1,50);
+var secNum = random(1,50);
 
-function(e) {
+var operators = ["+", "=", "*", "/"];
+var oprand =  random(0,3);
+
+
 var str = "<table cellpadding='5' cellspacing='5'>";
-for (var i = 0; i < N, i < i++) {
+for (var i = 0; i < N; i < i++) {
   str += "<tr>";
   for (j=0; j < N; j++) {
+    firstNum = random(1,50);
+    secNum = random(1,50);
+    operators[oprand];
     var equation = firstNum + operators[oprand] + secNum;
-    str += "<td>" + equation + "</td>"
+    str += "<td>" + equation + '<input type="submit" id="">' + "</td>";
 
     str += "</tr>";
     str += "</table>";
   }
 }
+document.querySelector('#results').innerHTML = str;
 
-
-
-  </script>
-  </div>
-  </body>
-</html>
+</script>
