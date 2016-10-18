@@ -15,6 +15,7 @@
 
 <script type="text/javascript">
 
+var answers = [];
 
 
 var random = function (min, max)
@@ -40,20 +41,28 @@ for (var i = 0; i < 4; i < i++) {
     var equation = firstNum + operators[oprand] + secNum;
     str += "<td>" + equation + '<input type="text" id="'+idNum+'">' + "</td>";
 
+    var answer = 0;
+
     if (operators[oprand] == "+") {
-      firstNum + secNum;
+    answer = firstNum + secNum;
     }
     if (operators[oprand] == "-") {
-      firstNum - secNum;
+    answer =  firstNum - secNum;
     }
     if (operators[oprand] == "*") {
-      firstNum * secNum;
+    answer = firstNum * secNum;
     }
     if (operators[oprand] == "/") {
-      firstNum / secNum;  
+    answer =  firstNum / secNum;
     }
 
+    answers[idNum] = answer;
+
+
+
     idNum++;
+
+
 
 
     str += "</tr>";
@@ -61,5 +70,19 @@ for (var i = 0; i < 4; i < i++) {
   }
 }
 document.querySelector('#results').innerHTML = str;
+
+var numWrong = 0;
+
+var addButton = document.getElementById("check");
+addButton.onclick = function(e) {
+  for (var i= 0; i < 20; i++) {
+  var box = document.getElementById(i).value;
+  if (answers[i] != box) {
+      numWrong++;
+  }
+  }
+  alert("You got " + numWrong + " out of 20 wrong");
+}
+
 
 </script>
