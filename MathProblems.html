@@ -15,7 +15,7 @@
 
 <script type="text/javascript">
 
-N = 20;
+
 
 var random = function (min, max)
 {
@@ -25,19 +25,36 @@ var random = function (min, max)
 var firstNum = random(1,50);
 var secNum = random(1,50);
 
-var operators = ["+", "=", "*", "/"];
+var operators = ["+", "-", "*", "/"];
 var oprand =  random(0,3);
-
-
-var str = "<table cellpadding='5' cellspacing='5'>";
-for (var i = 0; i < N; i < i++) {
+var idNum = 0;
+var str = "";
+str += "<table cellpadding='5' cellspacing='5'>";
+for (var i = 0; i < 4; i < i++) {
   str += "<tr>";
-  for (j=0; j < N; j++) {
+  for (j=0; j < 5; j++) {
     firstNum = random(1,50);
     secNum = random(1,50);
+    oprand = random(0,3);
     operators[oprand];
     var equation = firstNum + operators[oprand] + secNum;
-    str += "<td>" + equation + '<input type="submit" id="">' + "</td>";
+    str += "<td>" + equation + '<input type="text" id="'+idNum+'">' + "</td>";
+
+    if (operators[oprand] == "+") {
+      firstNum + secNum
+    }
+    if (operators[oprand] == "-") {
+      firstNum - secNum
+    }
+    if (operators[oprand] == "*") {
+      firstNum * secNum
+    }
+    if (operators[oprand] == "/") {
+      firstNum / secNum
+    }
+
+    idNum++;
+
 
     str += "</tr>";
     str += "</table>";
