@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Math Problems</title>
+</head>
+<body>
+  <input type="button" id="check" value="Check Answers">
+
+<div id="results">
+</div>
+</body>
+</html>
+
+
+<script type="text/javascript">
+
+var answers = [];
+
+
+var random = function (min, max)
+{
+  return Math.floor (Math.random() * (max - min + 1)) + min;
+}
+
+var firstNum = random(1,50);
+var secNum = random(1,50);
+
+var operators = ["+", "-", "*", "/"];
+var oprand =  random(0,3);
+var idNum = 0;
+var str = "";
+str += "<table cellpadding='5' cellspacing='5'>";
+for (var i = 0; i < 4; i < i++) {
+  str += "<tr>";
+  for (j=0; j < 5; j++) {
+    firstNum = random(1,50);
+    secNum = random(1,50);
+    oprand = random(0,3);
+    operators[oprand];
+    var equation = firstNum + operators[oprand] + secNum;
+    str += "<td>" + equation + '<input type="text" id="'+idNum+'">' + "</td>";
+
+    var answer = 0;
+
+    if (operators[oprand] == "+") {
+    answer = firstNum + secNum;
+    }
+    if (operators[oprand] == "-") {
+    answer =  firstNum - secNum;
+    }
+    if (operators[oprand] == "*") {
+    answer = firstNum * secNum;
+    }
+    if (operators[oprand] == "/") {
+    answer =  firstNum / secNum;
+    }
+
+    answers[idNum] = answer;
+
+
+
+    idNum++;
+
+
+
+
+    str += "</tr>";
+    str += "</table>";
+  }
+}
+document.querySelector('#results').innerHTML = str;
+
+var numWrong = 0;
+
+var addButton = document.getElementById("check");
+addButton.onclick = function(e) {
+  for (var i= 0; i < 20; i++) {
+  var box = document.getElementById(i).value;
+  if (answers[i] != box) {
+      numWrong++;
+  }
+  }
+  alert("You got " + numWrong + " out of 20 wrong");
+}
+
+
+</script>
