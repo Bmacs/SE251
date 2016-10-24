@@ -34,6 +34,20 @@
           alert($(this).val());
           $(this).addClass('Highlight');
         });
+
+        $('#MyDiv').mouseenter(function () {
+          Toggle(this);
+          $(this).css('cursor', 'pointer');
+        })
+        .mouseleave(function () {
+          Toggle(this);
+        })
+        .mouseup(function (e) {
+          $(this).text("X: " + e.pageX + " Y: " + e.pageY)
+        });
+        function Toggle(div) {
+          $(div).toggleClass("Highlight");
+        }
       }
     </script>
 </head>
