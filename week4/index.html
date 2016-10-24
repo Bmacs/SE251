@@ -10,6 +10,7 @@
         {
             width: 100%;
         }
+        .Highlight {background-color: lightblue;}
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script type="text/javascript">
@@ -45,7 +46,19 @@
         tcd.append('<br /><span style="background-color:green">Appended child 2</span>');
 
         $('span.Foo').wrap('<div class="RedDiv ParentWrapper" />');
+        $('div.ParentWrapper').each(function () {
+          //alert($(this).html());
+        })
+        $('div.ParentWrapper').remove();
+
+        $('input[type="text"]').addClass('Highlight');
+        $('#LastNameTextBox').removeClass("Highlight");
       });
+
+      function FocusBlur(tb) {
+        $(tb).toggleClass('Highlight');
+      }
+
     </script>
 </head>
 <body>
@@ -97,7 +110,7 @@
             </tr>
             <tr>
                 <td>Last Name</td>
-                <td><input id="LastNameTextBox" type="text" /></td>
+                <td><input id="LastNameTextBox" onfocus="FocusBlur(this)"  onblur="FocusBlur(this)" type="text" /></td>
             </tr>
             <tr>
                 <td>Comments</td>
