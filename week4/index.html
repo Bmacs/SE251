@@ -20,6 +20,11 @@
         });
         var output = $('#OutputDiv');
         output.html(html);
+
+        $('div.BlueDiv,div.RedDiv').each(function (index) {
+          this.title = "Some Title";
+          $(this).attr('title', "Some Title 2");
+        });
       });
     </script>
 </head>
