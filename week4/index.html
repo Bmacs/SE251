@@ -14,14 +14,17 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script type="text/javascript">
       $(function () {
-        $('div[title*="Title"]').html('Updated Div Value due to title');
+        var html = '';
+        $('div.BlueDiv,div.RedDiv').each(function (index) {
+          html += "<br />" + index + " " + $(this).text();
+        });
+        var output = $('#OutputDiv');
+        output.html(html);
       });
     </script>
 </head>
 <body>
-    <div id="TestDiv" title="Div Title asdf asdfsdf asdf">
-        This is my div text
-    </div>
+    <div id="OutputDiv"></div>
     <div title="Contains Table">
         <table id="DataTable">
           <tr>
