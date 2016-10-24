@@ -18,7 +18,23 @@
         </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script type="text/javascript">
-
+      $(document).ready(function () {
+        WireEvents();
+      });
+      function WireEvents() {
+        $('#SubmitButton').click(function () {
+          var FirstNameVal = $('#FirstNameTextBox').val();
+          var LastNameVal = $('#LastNameTextBox').val();
+          $('#DivOutput').text(FirstNameVal + " " + LastNameVal);
+        });
+        //Using unbind();
+        $('MyDiv').unbind('mouseup');
+        //Handle Selector
+        $('.MyInput').change(function () {
+          alert($(this).val());
+          $(this).addClass('Highlight');
+        });
+      }
     </script>
 </head>
 <body>
@@ -36,7 +52,7 @@
             <tr>
                 <td>Comments</td>
                 <td><textarea class="MyInput" rows="5" cols="60" id="CommentsTextBox"></textarea></td>
-            </tr>   
+            </tr>
             <tr>
                 <td>Phone</td>
                 <td>
@@ -54,7 +70,7 @@
                         </div>
                     </div>
                 </td>
-            </tr>        
+            </tr>
             <tr>
                 <td>
                     State
@@ -63,7 +79,7 @@
                     <select id="StatesSelect" class="MyInput">
                         <option value="AZ">AZ</option>
                         <option value="CA" selected="true">CA</option>
-                    </select>                
+                    </select>
                 </td>
             </tr>
             <tr>
@@ -72,7 +88,7 @@
                     <div id="DivOutput"></div>
                 </td>
             </tr>
-        </table>  
+        </table>
     </form>
     <script type="text/javascript">
         //Handle events the old-fashioned way
