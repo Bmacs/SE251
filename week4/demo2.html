@@ -60,12 +60,12 @@
         $('#MyTable tr').hover(function () {
           $(this).toggleClass('LightHighlight');
         });
-        var phonesDiv = $('#phonesDiv');
+        var phonesDiv = $('#PhonesDiv');
         $('#AddPhone').click(function () {
           var phoneSelDiv = $('div:eq(0)', phonesDiv).clone();
           var phoneTbDiv = $('div:eq(1)', phonesDiv).clone();
           $('select', phoneSelDiv).val('');
-          $('input, phoneTbDiv').val('');
+          $('input', phoneTbDiv).val('');
           phonesDiv.append('<div style="clear:both;" />')
                     .append(phoneSelDiv)
                     .append(phoneTbDiv);
