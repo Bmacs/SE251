@@ -25,6 +25,22 @@
           this.title = "Some Title";
           $(this).attr('title', "Some Title 2");
         });
+
+        $('div.BlueDiv, div.RedDiv')
+          .attr(
+            {
+              title: "Some title 3"
+            }
+          )
+
+          .css(
+            {
+              'background-color': 'purple',
+              'color': 'white',
+              'font-size': '20pt'
+            }).text('Changed color');
+
+
       });
     </script>
 </head>
