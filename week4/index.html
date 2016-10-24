@@ -38,15 +38,19 @@
               'background-color': 'purple',
               'color': 'white',
               'font-size': '20pt'
-            }).text('Changed color');
+            }
+          ).text('Changed color');
+        var tcd = $('#TableContainerDiv');
+        tcd.append('<span style="background-color:green">Appended child 1</span>');
+        tcd.append('<br /><span style="background-color:green">Appended child 2</span>');
 
-
+        $('span.Foo').wrap('<div class="RedDiv ParentWrapper" />');
       });
     </script>
 </head>
 <body>
     <div id="OutputDiv"></div>
-    <div title="Contains Table">
+    <div title="Contains Table" id="TableContainerDiv">
         <table id="DataTable">
           <tr>
              <td>Cell 1 Row 1</td>
@@ -78,6 +82,9 @@
     <div class="RedDiv">
         <span>Red div</span>
     </div>
+        <span class="Foo">Foo Span 1</span>
+        <span class="Foo">Foo Span 2</span>
+        <span class="Foo">Foo Span 3</span><br />
     <p>
         <img src="Images/pluralsight.png" />
     </p>
