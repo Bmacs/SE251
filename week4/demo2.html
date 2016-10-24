@@ -35,7 +35,7 @@
           $(this).addClass('Highlight');
         });
 
-        $('#MyDiv').mouseenter(function () {
+      /*  $('#MyDiv').mouseenter(function () {
           Toggle(this);
           $(this).css('cursor', 'pointer');
         })
@@ -47,7 +47,36 @@
         });
         function Toggle(div) {
           $(div).toggleClass("Highlight");
-        }
+        } */
+
+        $('#MyDiv').on('mouseenter mouseleave mouseup', function (e) {
+          $(this).toggleClass("Highlight");
+          $(this).css('cursor', 'pointer');
+          if(e.type == 'mouseup') {
+            $(this).text("X: " + e.pageX + " Y: " + e.pageY);
+          }
+        });
+
+        $('#MyTable tr').hover(function () {
+          $(this).toggleClass('LightHighlight');
+        });
+        var phonesDiv = $('#phonesDiv');
+        $('#AddPhone').click(function () {
+          var phoneSelDiv = $('div:eq(0)', phonesDiv).clone();
+          var phoneTbDiv = $('div:eq(1)', phonesDiv).clone();
+          $('select', phoneSelDiv).val('');
+          $('input, phoneTbDiv').val('');
+          phonesDiv.append('<div style="clear:both;" />')
+                    .append(phoneSelDiv)
+                    .append(phoneTbDiv);
+        });
+
+        phonesDiv.on('keypress', 'input', function(e){
+          if ((e.keycode < 48  || e.keycode > 57) && e.keycode != 45) {
+            e.stopPropagation();
+            return false;
+          }
+        });
       }
     </script>
 </head>
