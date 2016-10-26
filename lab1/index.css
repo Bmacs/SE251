@@ -1,0 +1,22 @@
+#assign {
+  text-align: center;
+  text-decoration: none;
+}
+
+h1 {
+  text-align: center;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+}
+
+a {
+  color: white;
+}
+
+body {
+  background-image:url(bg.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin-top: 10%;
+  font-family: 'Roboto', sans-serif;
+}
