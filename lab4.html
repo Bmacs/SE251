@@ -28,9 +28,9 @@
 
     <label>Year:</label>
     <select id="year">
-      <option value="2015">2015</option>
-      <option value="2016">2016</option>
-      <option value="2017">2017</option>
+      <option value="2015">2016</option>
+      <option value="2016">2017</option>
+      <option value="2017">2018</option>
 
 
     </select>
@@ -50,9 +50,8 @@ $(document).ready(function() {
 var ends;
 var weekRow;
 
-var createGrid = function() {
+var makeGrid = function() {
 var tab = "<table style='border:solid 2px; border-color:black'>";
-tab += "<h2>"+month+" "+year+"</h2>"
 tab += "<thead>";
 tab += "<tr> <td class ='dayHead'>Sunday</td> " +
         "<td class ='dayHead'>Monday</td> " +
@@ -324,3 +323,53 @@ tab += "<tr> <td class ='dayHead'>Sunday</td> " +
               }
           }
       }
+      function clickColor() {
+          $('tbody').find('td').hover(function () {
+              var cc = 0;
+              $('.day, .today').click(function () {
+                  cc++;
+                  if (cc == 1) {
+                      $(this).css('background-color', 'rgb(0 , 255 , 0');
+                  }
+                  if (cc == 2) {
+                      $(this).css('background-color', 'rgb(255 , 0 , 0');
+                      cc = 0;
+                  }
+              });
+          });
+      }
+
+      var currentDate = new Date();
+      var year = currentDate.getFullYear().toString();
+      var month = currentDate.getMonth().toString();
+      var day = currentDate.getDate();
+      $("#month").val(month);
+      $("#year").val(year);
+      date();
+      makeGrid();
+      clickColor();
+
+      $("#year , #month").change(function () {
+          year = $("#year option:selected").val();
+          month = $("#month option:selected").val();
+
+         if (month == currentDate.getMonth().toString()){
+             day = currentDate.getDate();
+         }
+         else {
+             day = 0;
+         }
+          date();
+          $("table , h2").remove();
+          makeGrid();
+          clickColor();
+      });
+      $('.available').click(function () {
+              $('.day, .today').css('background-color', 'rgb(0 , 255 , 0');
+      });
+      $('.unavailable').click(function () {
+          $('.day, .today').css('background-color', 'rgb(255 , 0 , 0');
+      });
+  });
+
+  </script>
