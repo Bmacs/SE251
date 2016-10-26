@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Availability Calendar</title>
-
+  <link type="text/css" rel="stylesheet" href="calendar.css"/>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </head>
 <body>
@@ -38,71 +38,53 @@
   <div id="results">
 
   </div>
+  <button type="button" class="available">Available All Month</button>
+  <button type="button" class="unavailable">Unavailable All Month</button>
 </body>
 </html>
 
 <script>
-var daysOfTheWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
-function showCalendar (month, year)
-{
+$(document).ready(function() {
 
+var ends;
+var weekRow;
 
-  var firstDayOfMonth = month + "/1/" + year;
-  var d = new Date ( firstDayOfMonth);
-  var numberOfDaysInMonth = daysInMonth (d);
-  var firstDayOfWeek = d.getDay();
-
-  var str = "<ul>";
-  str += "<li>Number of days in the month: " + numberOfDaysInMonth + "</li>";
-  str += "<li>First day of the week: " + firstDayOfWeek + " (" + daysOfTheWeek[firstDayOfWeek] + ")</li>";
-
-  str += "</ul>";
-  $("#results").html (str);
-  // grid
-
-  var tab = "<table cellpadding='5' cellspacing='5'>";
-    for (i = 0; i < numberOfDaysInMonth; i++) {
-      tab += "<tr>";
-      for (j=0; j < daysOfTheWeek; j++) {
-        tab += "<td>" + daysOfTheWeek + "</td>";
-      }
-      tab += "</tr>";
-    }
-  tab += "</table>";
-  results.innerHTML = tab;
-
-
-}
-function daysInMonth(anyDateInMonth) {
-      return new Date(anyDateInMonth.getYear(),
-              anyDateInMonth.getMonth()+1,
-              0).getDate();
-}
-$(document).ready(function(){
-
-  var d 	= new Date();
-  var month = d.getMonth()+1;
-  var year 	= d.getFullYear();
-
-  $("#month").val(month);
-  $("#year").val(year);
-  showCalendar (month, year);
-
-  $("#month,#year").click (function(e) {
-    showCalendar ($("#month").val(), $("#year").val());
-
-
-
-  });
-});
-
-/*
-var Allgreen = document.getElementById('greenbtn');
-addButton.onclick = function(e) {
-  for
-
-}
-*/
-
-</script>
+var createGrid = function() {
+var tab = "<table style='border:solid 2px; border-color:black'>";
+tab += "<h2>"+month+" "+year+"</h2>"
+tab += "<thead>";
+tab += "<tr> <td class ='dayHead'>Sunday</td> " +
+        "<td class ='dayHead'>Monday</td> " +
+        "<td class ='dayHead'>Tuesday</td> " +
+        "<td class ='dayHead'>Wednesday</td> </td> " +
+        "<td class ='dayHead'>Thursday</td> " +
+        "<td class ='dayHead'>Friday</td> " +
+        "<td class ='dayHead'>Saturday</td>";
+        tab += "</thead>";
+        var num = 1;
+        tab +="<tbody>"
+        for (row = 0; row < weekRow; row++) {
+            tab += "<tr>";
+            for (col = 0; col < 7; col++) {
+                if (dayStarts < 1) {
+                    tab += "<td></td>";
+                }
+                else if (dayStarts <= ends) {
+                    if (day == num) {
+                        tab += "<td id='day' <div class='today'><p>" + dayStarts + "</p></div></td>";
+                        num++
+                    }
+                    else {
+                        tab += "<td id='day' <div class='day'><p>" + dayStarts + "</p></div></td>";
+                        num++;
+                    }
+                }
+                dayStarts++;
+            }
+            tab += "</tr>";
+        }
+        tab +="</tbody>";
+        tab += "</table>";
+        $(tab).appendTo('#results');
+    };
