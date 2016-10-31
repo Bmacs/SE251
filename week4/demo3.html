@@ -9,7 +9,13 @@
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script>
+      $(function() {
+        var tbody = $('#customers tbody');
+        $('#addRow').on('click', function () {
+        tbody.append('<tr><td>Jane</td><td>Doe</td><tr>');
+        });
 
+      });
     </script>
 </head>
 <body>
@@ -49,6 +55,6 @@
             <td>Wahlin</td>
         </tr>
     </table>
-    
+
 </body>
 </html>
