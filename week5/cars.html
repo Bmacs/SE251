@@ -4,7 +4,14 @@
   <meta charset="UTF-8">
   <title>Document</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script type="text/javascript"></script>
+  <script type="text/javascript">
+    $(function() {
+      $('#addCar').on('click', function () {
+        var color = $('#color').val();
+        alert(color);
+      })
+    });
+  </script>
 </head>
 <body>
   <div id="carForm">
@@ -12,7 +19,7 @@
     Make: <input type="text" id="color" /><br />
     Model: <input type="text" id="color" /><br />
     Year: <input type="text" id="color" /><br />
-    Doors: <input type="text" id="color" />
+    Doors: <input type="text" id="color" /><br />
     <input type="button" id="addCar" value="addCar" />
   </div>
 
