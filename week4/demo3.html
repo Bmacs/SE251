@@ -14,7 +14,9 @@
         $('#addRow').on('click', function () {
         tbody.append('<tr><td>Jane</td><td>Doe</td><tr>');
         });
-
+        tbody.on('click', 'td', function () {
+          alert($(this).text());
+        })
       });
     </script>
 </head>
