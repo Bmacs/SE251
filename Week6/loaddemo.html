@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script type="text/javascript"
+  src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
+  <script type="text/javascript" ></script>
+  <script>
+    $(function () {
+      $('#hardware').on('click', function () {
+        $('results').load('help.html');
+      });
+      $('#wetware').on('click', function () {
+        $('results').load('help.html #wetware');
+      });
+      $('#software').on('click', function () {
+        $('results').load('whatever.php', {PageSize:25}, function (response, status, xhr) {
+          if (status == "error") {
+            alert(xhr.statusText);
+          }
+        });
+      });
+    });
+  </script>
+</head>
+<body>
+  <div id="fauxform">
+    Hardware: <button type="button" id="hardware"></button value="help"> <br />
+    Software: <button type="button" id="software"></button value="help"> <br />
+    Wetware: <button type="button" id="wetware"></button value="help"> <br />
+  </div>
+
+  <div id="results">
+
+  </div>
+</body>
+</html>
