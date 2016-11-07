@@ -1,4 +1,4 @@
-<?php>
+<?php
 header("Content-type: application/json");
 $username = "shop";
 $password = "se266";
@@ -11,12 +11,12 @@ try {
 }
 
 try {
-  $stmt = $db->prapare("SELECT categoryID, categoryName FROM categories");
+  $stmt = $db->prepare("SELECT categoryID, categoryName FROM categories");
   $stmt->execute();
   $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
   echo json_encode($results);
 } catch (PDOException $e) {
-  die("There was a problem running your query")
+  die("There was a problem running your query");
 }
 
 

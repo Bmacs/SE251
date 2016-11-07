@@ -5,7 +5,40 @@
   <title>Document</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script type="text/javascript">
+    $(function () {
+    /*  $.getJSON('categoryListJSON.php', function (data) {
+        $.each(data, function (index, row) {
+          $('#foo').append("<p>ID is " + row.categoryID + " " + row.categoryName + "</p>");
+        });
+      }); */
 
+      $.ajax({
+        url: 'categoryListJSON.php',
+        success: function (data, status, xhr) {
+          $.each(data, function (index, row) {
+            $('#foo').append("<p>ID is " + row.categoryID + " " + row.categoryName + "</p>");
+          });
+        },
+        error: function (xhr, status, error) {
+          alert("There was an issue called " + status);
+        }
+      });
+      // This won't work because it's just a concept
+      // customer has to be stringified
+      $.ajax({
+        url: 'addCustomerJSON.php',
+        // data you send
+        data: customer,
+        dataType: json,
+        success: function() {
+
+        }
+        error: function () {
+
+        }
+        type:post;
+      })
+    });
   </script>
 </head>
 <body>
