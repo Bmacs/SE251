@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script>
+    $(function() {
+      var actors = []
+      $('#addActor').on('click', function () {
+        var Fname = $('#Fname').val();
+        var Lname = $('#Lname').val();
+        var dob = $('#dob').val();
+        var gender = $('#gender').val();
+        var genre = $('#genre').val();
+        var actor = {};
+        actor.Fname = Fname;
+        actor.Lname = Lname;
+        actor.dob = dob;
+        actor.gender = gender;
+        actor.genre = genre;
+        console.log(actor);
+      });
+    });
+  </script>
+</head>
+<body>
+  <div id="actorForm">
+    First Name: <input type="text" id="Fname" />
+    Last Name: <input type="text" id="Lname" />
+    Date of Birth: <input type="text" id="dob" />
+    Gender: <input type="text" id="gender" />
+    Genre: <input type="text" id="genre" />
+    <input type="button" id="addActor" value="Add Actor">
+  </div>
+
+  <div id="actors">
+
+  </div>
+
+</body>
+</html>
