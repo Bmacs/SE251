@@ -21,7 +21,7 @@
         car.doors = doors;
         cars[cars.length] = car;
         console.log(car);
-        localStorage.setItem('cars', JSON.strinify, cars);
+        localStorage.setItem('cars', JSON.stringify, cars);
         console.log( JSON.parse (localStorage.getItem(cars) ) );
         $('#cars').append('<p>' + car.color + " " + car.make + " " + car.model + " " + car.year + " " +
       car.doors + '</p>');
