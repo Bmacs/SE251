@@ -10,16 +10,51 @@
       $('#addActor').on('click', function () {
         var Fname = $('#Fname').val();
         var Lname = $('#Lname').val();
-        var dob = $('#dob').val();
+        var dobMonth = $('#month').val();
+        var dobDay = $('#day').val();
+        var dobYear = $('#year').val();
+
         var gender = $('#gender').val();
-        var genre = $('#genre').val();
+        if ($('#male').checked)
+        {
+          gender = "Male";
+        }
+        else
+        {
+          gender = "Female";
+        }
+
+
+        var genre = "";
+        if ($('#action').is(':checked'))
+        {
+          genre = "Action";
+        }
+        if ($('#comedy').is(':checked'))
+        {
+          genre = "Comedy";
+        }
+        if ($('#drama').is(':checked'))
+        {
+          genre = "Drama";
+        }
+        if ($('#scifi').is(':checked'))
+        {
+          genre= "Science Fiction";
+        }
         var actor = {};
         actor.Fname = Fname;
         actor.Lname = Lname;
-        actor.dob = dob;
+        actor.dob = dobMonth;
+        actor.dob += dobYear;
+        actor.dob += dobDay;
         actor.gender = gender;
         actor.genre = genre;
         console.log(actor);
+        localStorage.setItem('actors', JSON.stringify, actors);
+        console.log( JSON.parse (localStorage.getItem(actors) ) );
+        $('#cars').append('<p>' + actor.Fname + " " + actor.Lname + " " + actor.dob +
+      " " + actor.gender + " " + actor.genre + '</p>');
       });
 
     $(function() {
@@ -27,8 +62,9 @@
       $('#update').on('click', function() {
         // where you add editing functionality
       });
-    });
 
+
+      });
     });
   </script>
 </head>
@@ -150,14 +186,16 @@
 
 
     Gender:<br>
-    <input type="radio" name="gender" value="Male"> Male
-    <input type="radio" name="gender" value="Female"> Female <br>
+    <input type="radio" id="male" value="Male"> Male
+    <input type="radio" id="female" value="Female"> Female <br>
+
     Genre: <br>
       <input type="checkbox" id="action">Action</input> <br>
       <input type="checkbox" id="comedy">Comedy</input> <br>
       <input type="checkbox" id="drama">Drama</input> <br>
       <input type="checkbox" id="scifi">Science Fiction</input>
-    <br />
+    <br>
+
     <input type="button" id="addActor" value="Add Actor"><br />
     <input type="button" id="update" value="Update Actor"><br />
     <input type="button" id="delete" value="Delete Actor"><br />
