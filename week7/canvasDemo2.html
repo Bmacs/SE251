@@ -85,7 +85,7 @@
         }).drawLayers();
       */
 
-        $myCanvas.drawArc({
+    /*    $myCanvas.drawArc({
           name: 'orangeCircle',
           layer:true,
           x:50, y:50,
@@ -105,6 +105,42 @@
             opacity: 1,
 
           }, 'slow', 'ease-in-out')
+        }); */
+
+        $myCanvas.drawRect({
+          layer: true,
+          draggable: true,
+          bringToFront: true,
+          name: 'bluesquare',
+          fillStyle: 'steelblue',
+          x:250, y:150,
+          width:100, height:100,
+          rotate: 180,
+          shadowX:-1, shadowY:8,
+          shadowBlur:2,
+          shadowColor: 'rgba(0, 0, 0, 0.8)',
+          dragstop: function(layer){
+            var layername = layer.name;
+            $('#output').html("The <strong>" + layername + "</strong> layer was dragged");
+
+          }
+        }).drawRect({
+          layer: true,
+          draggable: true,
+          bringToFront: true,
+          name: 'redsquare',
+          fillStyle: 'red',
+          x:190, y:150,
+          width:100, height:100,
+          rotate: 145,
+          shadowX:-2, shadowY:5,
+          shadowBlur:3,
+          shadowColor: 'rgba(0, 0, 0, 0.5)',
+          dragstop: function(layer){
+            var layername = layer.name;
+            $('#output').html("The <strong>" + layername + "</strong> layer was dragged");
+
+          }
         });
       });
 
@@ -112,5 +148,6 @@
 </head>
 <body>
   <canvas id="myCanvas" width="600" height="300">This is fallback content for those who can't handle canvas such as older browsers or screen readers or other assistive devices.</canvas>
+  <div id="output"></div>
 </body>
 </html>
