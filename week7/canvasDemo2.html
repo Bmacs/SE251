@@ -64,7 +64,7 @@
             strokeWidth: 1
         }); */
 
-        $myCanvas.drawImage({
+      /*  $myCanvas.drawImage({
           source: "moon.jpg",
           x: 200, y: 75,
           fromCenter: false,
@@ -72,6 +72,39 @@
           shadowColor: 'yellow',
           shadowBlur: 3,
 
+        });
+        */
+
+      /*  $myCanvas.drawRect({
+          fillStyle: 'steelblue',
+          layer: true,
+          fromCenter: false,
+          x:50, y:50,
+          width:400, height:200,
+          name: 'blueRectangle',
+        }).drawLayers();
+      */
+
+        $myCanvas.drawArc({
+          name: 'orangeCircle',
+          layer:true,
+          x:50, y:50,
+          radius: 100,
+          fillStyle: 'orange',
+          opacity: .5,
+        });
+
+        // time to animate it
+        $myCanvas.animateLayer('orangeCircle', {
+          x:150, y:150,
+          radius:50,
+        }, 1000, function(layer) {
+          $(this).animateLayer(layer, {
+            fillStyle: 'skyblue',
+            x:250, y:100,
+            opacity: 1,
+
+          }, 'slow', "ease-in-out")
         });
       });
 
