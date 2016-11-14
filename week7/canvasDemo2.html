@@ -8,15 +8,12 @@
   <script type="text/javascript">
     $(function () {
       var $myCanvas = $('#myCanvas');
-      $myCanvas.drawRect({
-        fillStyle: 'steelblue',
-        strokeStyle: 'blue',
+      $myCanvas.drawArc({
+        strokeStyle: 'steelblue',
         strokeWidth: 4,
-        x: 150,
-        y: 100,
-        fromCenter: false,
-        width: 200,
-        height: 100
+        x: 300, y: 100,
+        radius: 50,
+        start: 0, end: 200,
       });
     });
   </script>
