@@ -8,7 +8,7 @@
   <script type="text/javascript">
     $(function () {
       var $myCanvas = $('#myCanvas');
-      $myCanvas.drawArc({
+      /* $myCanvas.drawArc({
         fillStyle: "yellow",
         strokeStyle: '#303030',
         strokeWidth: 4,
@@ -41,8 +41,21 @@
         radius: 30,
         start: 0,
         end: 200
+
       });
-    });
+        */
+        $myCanvas.drawLine({
+          strokeStyle: 'steelblue',
+          strokeWidth: 10,
+          rounded: true,
+          closed: true,
+          x1: 100, y1: 28,
+          x2: 50, y2: 200,
+          x3: 300, y3: 200,
+          x4: 100, y4: 28
+        });
+      });
+
   </script>
 </head>
 <body>
