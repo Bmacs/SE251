@@ -4,78 +4,7 @@
   <meta charset="UTF-8">
   <title>Document</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script>
-    $(function() {
-      var actors = []
-      $('#addActor').on('click', function () {
-        var Fname = $('#Fname').val();
-        var Lname = $('#Lname').val();
-        var dobMonth = $('#month option:selected').text();
-        var dobDay = $('#day option:selected').text();
-        var dobYear = $('#year option:selected').text();
 
-        var gender = $('#gender').val();
-        if ($('#male').checked)
-        {
-          gender = "Male";
-        }
-        else
-        {
-          gender = "Female";
-        }
-
-
-        var genre = "";
-        if ($('#action').is(':checked'))
-        {
-          genre += "Action ";
-        }
-        if ($('#comedy').is(':checked'))
-        {
-          genre += "Comedy ";
-        }
-        if ($('#drama').is(':checked'))
-        {
-          genre += "Drama ";
-        }
-        if ($('#scifi').is(':checked'))
-        {
-          genre += "Science Fiction ";
-        }
-        var actor = {};
-        actor.Fname = Fname;
-        actor.Lname = Lname;
-        actor.dob = dobMonth + " ";
-        actor.dob += dobDay + " ";
-        actor.dob += dobYear + " ";
-        actor.gender = gender;
-        actor.genre = genre;
-        console.log(actor);
-        localStorage.setItem('actors', JSON.stringify, actors);
-        console.log( JSON.parse (localStorage.getItem(actors) ) );
-        $('#actors').append('<p id=output>' + actor.Fname + " " + actor.Lname + " " + actor.dob +
-      " " + actor.gender + " " + actor.genre + '</p>');
-
-
-        $(function () {
-          var actorAlert = $('#output');
-          $('p').on('click', function() {
-            alert($(this).text());
-          })
-        });
-
-      });
-
-    $(function() {
-      var update = $('#actorForm');
-      $('#update').on('click', function() {
-        // where you add editing functionality
-      });
-
-
-      });
-    });
-  </script>
 </head>
 <body>
   <div id="actorForm">
@@ -195,8 +124,8 @@
 
 
     Gender:<br>
-    <input type="radio" id="male" value="Male"> Male
-    <input type="radio" id="female" value="Female"> Female <br>
+    <input type="radio" id="male"> Male
+    <input type="radio" id="female"> Female <br>
 
     Genre: <br>
       <input type="checkbox" id="action">Action</input> <br>
@@ -206,8 +135,8 @@
     <br>
 
     <input type="button" id="addActor" value="Add Actor"><br />
-    <input type="button" id="update" value="Update Actor"><br />
-    <input type="button" id="delete" value="Delete Actor"><br />
+    <input type="button" id="update" value="Update Actor" style="visibility:hidden"><br />
+    <input type="button" id="delete" value="Delete Actor" style="visibility:hidden"><br />
   </div>
 
   <div id="actors">
@@ -216,3 +145,89 @@
 
 </body>
 </html>
+
+
+<script>
+  $(function() {
+    var actors = []
+    $('#addActor').on('click', function () {
+      var Fname = $('#Fname').val();
+      var Lname = $('#Lname').val();
+      var dobMonth = $('#month option:selected').text();
+      var dobDay = $('#day option:selected').text();
+      var dobYear = $('#year option:selected').text();
+
+      var gender = " ";
+      if ($('#male').prop('checked'))
+      {
+        gender = "Male";
+
+      }
+      else if ($('#female').prop('checked'))
+      {
+        gender = "Female";
+      }
+
+
+      var genre = "";
+      if ($('#action').is(':checked'))
+      {
+        genre += "Action ";
+      }
+      if ($('#comedy').is(':checked'))
+      {
+        genre += "Comedy ";
+      }
+      if ($('#drama').is(':checked'))
+      {
+        genre += "Drama ";
+      }
+      if ($('#scifi').is(':checked'))
+      {
+        genre += "Science Fiction ";
+      }
+      var actor = {};
+      actor.Fname = Fname;
+      actor.Lname = Lname;
+      actor.dob = dobMonth + " ";
+      actor.dob += dobDay + " ";
+      actor.dob += dobYear + " ";
+      actor.gender = gender;
+      actor.genre = genre;
+      console.log(actor);
+      localStorage.setItem('actors', JSON.stringify, actors);
+      console.log( JSON.parse (localStorage.getItem(actors) ) );
+
+      actors.push (addActor);
+
+      $('#actors').append('<p id=output>' + actor.Fname + " " + actor.Lname + " " + actor.dob +
+    " " + actor.gender + " " + actor.genre + '</p>');
+
+
+      $(function () {
+        var actorAlert = $('#output');
+        $('p').on('click', function() {
+          alert($(this).text());
+
+          $('#update').css('visibility', 'visible');
+          $('#update').css('visibility', 'visible');
+        })
+      });
+
+    });
+
+  $(function() {
+    var update = $('#actorForm');
+    $('#update').on('click', function() {
+      // where you add editing functionality
+      actors[row].Fname = Fname.value;
+      actors[row].Lname = lname.value;
+      actors[row].dob = dob.value;
+      actors[row].gender = gender.value;
+      actors[row].genre = genre.value;
+    });
+
+
+    });
+  });
+</script>
