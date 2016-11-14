@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="jcanvas.min.js" type="text/javascript"></script>
+  <script type="text/javascript">
+    $(function () {
+      var $myCanvas = $('#myCanvas');
+      $myCanvas.drawRect({
+        fillStyle: 'steelblue',
+        strokeStyle: 'blue',
+        strokeWidth: 4,
+        x: 150,
+        y: 100,
+        fromCenter: false,
+        width: 200,
+        height: 100
+      });
+    });
+  </script>
+</head>
+<body>
+  <canvas id="myCanvas" width="600" height="300">This is fallback content for those who can't handle canvas such as older browsers or screen readers or other assistive devices.</canvas>
+</body>
+</html>
