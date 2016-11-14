@@ -10,9 +10,9 @@
       $('#addActor').on('click', function () {
         var Fname = $('#Fname').val();
         var Lname = $('#Lname').val();
-        var dobMonth = $('#month').val();
-        var dobDay = $('#day').val();
-        var dobYear = $('#year').val();
+        var dobMonth = $('#month option:selected').text();
+        var dobDay = $('#day option:selected').text();
+        var dobYear = $('#year option:selected').text();
 
         var gender = $('#gender').val();
         if ($('#male').checked)
@@ -28,33 +28,42 @@
         var genre = "";
         if ($('#action').is(':checked'))
         {
-          genre = "Action";
+          genre += "Action ";
         }
         if ($('#comedy').is(':checked'))
         {
-          genre = "Comedy";
+          genre += "Comedy ";
         }
         if ($('#drama').is(':checked'))
         {
-          genre = "Drama";
+          genre += "Drama ";
         }
         if ($('#scifi').is(':checked'))
         {
-          genre= "Science Fiction";
+          genre += "Science Fiction ";
         }
         var actor = {};
         actor.Fname = Fname;
         actor.Lname = Lname;
-        actor.dob = dobMonth;
-        actor.dob += dobYear;
-        actor.dob += dobDay;
+        actor.dob = dobMonth + " ";
+        actor.dob += dobDay + " ";
+        actor.dob += dobYear + " ";
         actor.gender = gender;
         actor.genre = genre;
         console.log(actor);
         localStorage.setItem('actors', JSON.stringify, actors);
         console.log( JSON.parse (localStorage.getItem(actors) ) );
-        $('#cars').append('<p>' + actor.Fname + " " + actor.Lname + " " + actor.dob +
+        $('#actors').append('<p id=output>' + actor.Fname + " " + actor.Lname + " " + actor.dob +
       " " + actor.gender + " " + actor.genre + '</p>');
+
+
+        $(function () {
+          var actorAlert = $('#output');
+          $('p').on('click', function() {
+            alert($(this).text());
+          })
+        });
+
       });
 
     $(function() {
