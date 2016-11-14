@@ -9,11 +9,38 @@
     $(function () {
       var $myCanvas = $('#myCanvas');
       $myCanvas.drawArc({
-        strokeStyle: 'steelblue',
+        fillStyle: "yellow",
+        strokeStyle: '#303030',
         strokeWidth: 4,
         x: 300, y: 100,
-        radius: 50,
-        start: 0, end: 200,
+        radius: 80
+      }).drawArc({
+        fillStyle: '#303030',
+        strokeStyle: '#303030',
+        x:265, y:70,
+        radius: 5
+      }).drawArc({
+        fillStyle: '#303030',
+        strokeStyle: '#303030',
+        x:335, y:70,
+        radius: 5
+      }).drawArc({
+        // smile
+        strokeStyle: '#303030',
+        strokeWidth: 4,
+        x:300, y:135,
+        radius: 30,
+        start: 90,
+        end: 280
+      }).drawArc({
+        //nose
+        strokeStyle: '#303030',
+        strokeWidth: 4,
+        x:300, y:100,
+        ccw: true,
+        radius: 30,
+        start: 0,
+        end: 200
       });
     });
   </script>
