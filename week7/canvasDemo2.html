@@ -55,13 +55,23 @@
           x4: 100, y4: 28
         }); */
 
-        $myCanvas.drawText({
+      /*  $myCanvas.drawText({
           text: "Canvas is fun",
             fontFamily: "cursive",
             fontSize: 40,
             x: 290, y: 150,
             strokeStyle: 'blue',
             strokeWidth: 1
+        }); */
+
+        $myCanvas.drawImage({
+          source: "moon.jpg",
+          x: 200, y: 75,
+          fromCenter: false,
+          rotate: 50,
+          shadowColor: 'yellow',
+          shadowBlur: 3,
+
         });
       });
 
