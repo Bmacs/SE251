@@ -148,86 +148,141 @@
 
 
 <script>
-  $(function() {
-    var actors = []
-    $('#addActor').on('click', function () {
-      var Fname = $('#Fname').val();
-      var Lname = $('#Lname').val();
-      var dobMonth = $('#month option:selected').text();
-      var dobDay = $('#day option:selected').text();
-      var dobYear = $('#year option:selected').text();
+var actors = [];
+window.onload = function()
+{
+  $('#addActor').on('click', addActor);
+}
 
-      var gender = " ";
-      if ($('#male').prop('checked'))
-      {
-        gender = "Male";
+function addActor()
+{
+  var Fname = $('#Fname').val();
+  var Lname = $('#Lname').val();
+  var dobMonth = $('#month option:selected').text();
+  var dobDay = $('#day option:selected').text();
+  var dobYear = $('#year option:selected').text();
+  var dob = dobMonth + " " + dobDay +  " " + dobYear;
 
-      }
-      else if ($('#female').prop('checked'))
-      {
-        gender = "Female";
-      }
+  var gender = " ";
+  if ($('#male').prop('checked'))
+  {
+    gender = "Male";
 
-
-      var genre = "";
-      if ($('#action').is(':checked'))
-      {
-        genre += "Action ";
-      }
-      if ($('#comedy').is(':checked'))
-      {
-        genre += "Comedy ";
-      }
-      if ($('#drama').is(':checked'))
-      {
-        genre += "Drama ";
-      }
-      if ($('#scifi').is(':checked'))
-      {
-        genre += "Science Fiction ";
-      }
-      var actor = {};
-      actor.Fname = Fname;
-      actor.Lname = Lname;
-      actor.dob = dobMonth + " ";
-      actor.dob += dobDay + " ";
-      actor.dob += dobYear + " ";
-      actor.gender = gender;
-      actor.genre = genre;
-      console.log(actor);
-      localStorage.setItem('actors', JSON.stringify, actors);
-      console.log( JSON.parse (localStorage.getItem(actors) ) );
-
-      actors.push (addActor);
-
-      $('#actors').append('<p id=output>' + actor.Fname + " " + actor.Lname + " " + actor.dob +
-    " " + actor.gender + " " + actor.genre + '</p>');
+  }
+  else if ($('#female').prop('checked'))
+  {
+    gender = "Female";
+  }
 
 
-      $(function () {
-        var actorAlert = $('#output');
-        $('p').on('click', function() {
-          alert($(this).text());
+  var genre = "";
+  if ($('#action').is(':checked'))
+  {
+    genre += "Action ";
+  }
+  if ($('#comedy').is(':checked'))
+  {
+    genre += "Comedy ";
+  }
+  if ($('#drama').is(':checked'))
+  {
+    genre += "Drama ";
+  }
+  if ($('#scifi').is(':checked'))
+  {
+    genre += "Science Fiction ";
+  }
+  var actor = {Fname: Fname, Lname: Lname, dob: dob, gender: gender, genre: genre};
 
-          $('#update').css('visibility', 'visible');
-          $('#update').css('visibility', 'visible');
-        })
-      });
+  //console.log(actor);
+  //localStorage.setItem('actors', JSON.stringify, actors);
+  //console.log( JSON.parse (localStorage.getItem(actors) ) );
 
-    });
+  actors.push (actor);
+  console.log(actors);
 
-  $(function() {
-    var update = $('#actorForm');
-    $('#update').on('click', function() {
-      // where you add editing functionality
-      actors[row].Fname = Fname.value;
-      actors[row].Lname = lname.value;
-      actors[row].dob = dob.value;
-      actors[row].gender = gender.value;
-      actors[row].genre = genre.value;
-    });
+  printActors();
+}
+
+function printActors()
+{
+  $('#actors').empty();
+  for(var i = 0; i < actors.length; i++)
+  {
+      $('#actors').append('<p id="'+ i + '">' + actors[i].Fname + " " + actors[i].Lname + " " + actors[i].dob +
+    " " + actors[i].gender + " " + actors[i].genre + '</p>');
+  }
+
+  $('p').on('click', function()
+  {
+    ///alert($(this).text());
+
+    $('#update').css('visibility', 'visible');
+    $('#delete').css('visibility', 'visible');
+
+    var pId = $(this).attr('id');
+
+    populateFields(pId);
+    $('#update').on('click', function() { updateClick(pId);});
+    $('#delete').on('click', function() { updateClick(pId);}); //change to delete function
+  })
+}
+
+function deleteClick()
+{
+  // splice a row
+}
+
+function updateClick(pId)
+{
+  var Fname = $('#Fname').val();
+  var Lname = $('#Lname').val();
+  var dobMonth = $('#month option:selected').text();
+  var dobDay = $('#day option:selected').text();
+  var dobYear = $('#year option:selected').text();
+  var dob = dobMonth + " " + dobDay +  " " + dobYear;
+
+  var gender = " ";
+  if ($('#male').prop('checked'))
+  {
+    gender = "Male";
+
+  }
+  else if ($('#female').prop('checked'))
+  {
+    gender = "Female";
+  }
 
 
-    });
-  });
+  var genre = "";
+  if ($('#action').is(':checked'))
+  {
+    genre += "Action ";
+  }
+  if ($('#comedy').is(':checked'))
+  {
+    genre += "Comedy ";
+  }
+  if ($('#drama').is(':checked'))
+  {
+    genre += "Drama ";
+  }
+  if ($('#scifi').is(':checked'))
+  {
+    genre += "Science Fiction ";
+  }
+
+  actors[pId].Fname = Fname.value;
+  actors[pId].Lname = Lname.value;
+  actors[pId].dob = dob.value;
+  actors[pId].gender = gender.value;
+  actors[pId].genre = genre.value;
+}
+
+function populateFields(pId)
+{
+  //alert(pId);
+   $('#Fname').val(actors[pId].Fname);
+}
+
 </script>
