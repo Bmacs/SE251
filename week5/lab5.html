@@ -215,7 +215,7 @@ function printActors()
 
   $('p').on('click', function()
   {
-    ///alert($(this).text());
+    alert($(this).text());
 
     $('#update').css('visibility', 'visible');
     $('#delete').css('visibility', 'visible');
@@ -224,13 +224,27 @@ function printActors()
 
     populateFields(pId);
     $('#update').on('click', function() { updateClick(pId);});
-    $('#delete').on('click', function() { updateClick(pId);}); //change to delete function
+    $('#delete').on('click', function() { deleteClick(pId);}); //change to delete function
+
+
+
+
   })
 }
 
 function deleteClick()
 {
+
+  var pId = $(this).attr('id');
+
   // splice a row
+  actors.splice(pId,1)
+
+  console.log(actors);
+
+  printActors();
+
+
 }
 
 function updateClick(pId)
@@ -281,7 +295,7 @@ function updateClick(pId)
 
 function populateFields(pId)
 {
-  //alert(pId);
+  alert(pId);
    $('#Fname').val(actors[pId].Fname);
 }
 
