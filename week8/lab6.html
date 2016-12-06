@@ -149,9 +149,22 @@
 
 <script>
 var actors = [];
+
 window.onload = function()
 {
+  if(localStorage.getItem('actors') != null)
+                      // if something is there
+  // $(#actors).append
+  {
+    // parse here
+    actors = JSON.parse( localStorage.getItem('actors'))
+    console.log(actors);
+
+    //JSON.parse('actor');
+  }
+
   $('#addActor').on('click', addActor);
+
 }
 
 function addActor()
@@ -168,10 +181,12 @@ function addActor()
   {
     gender = "Male";
 
+
   }
   else if ($('#female').prop('checked'))
   {
     gender = "Female";
+
   }
 
 
@@ -193,15 +208,20 @@ function addActor()
     genre += "Science Fiction ";
   }
   var actor = {Fname: Fname, Lname: Lname, dob: dob, gender: gender, genre: genre};
+  actors.push(actor);
+  console.log(actor);
 
-  //console.log(actor);
-  //localStorage.setItem('actors', JSON.stringify, actors);
   //console.log( JSON.parse (localStorage.getItem(actors) ) );
 
-  actors.push (actor);
+  localStorage.setItem('actors',JSON.stringify(actors));
+
   console.log(actors);
 
   printActors();
+
+$('#male').prop('checked', false);
+$('#female').prop('checked', false);
+
 }
 
 function printActors()
