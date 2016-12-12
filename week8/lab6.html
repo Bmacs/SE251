@@ -244,7 +244,7 @@ function printActors()
 
     populateFields(pId);
     $('#update').on('click', function() { updateClick(pId);});
-    $('#delete').on('click', function() { deleteClick(pId);}); //change to delete function
+    $('#delete').on('click', function() { deleteClick(pId);});
 
 
 
@@ -252,13 +252,11 @@ function printActors()
   })
 }
 
-function deleteClick()
+function deleteClick(pId)
 {
 
-  var pId = $(this).attr('id');
-
   // splice a row
-  actors.splice(pId,1)
+  actors.splice(pId, 1);
 
   console.log(actors);
 
