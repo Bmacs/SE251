@@ -3,8 +3,41 @@
 <head>
   <meta charset="UTF-8">
   <title>Lab9</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="jcanvas.min.js" type="text/javascript"></script>
+  <script type="text/javascript">
+  $(function () {
+    var $myCanvas = $('#myCanvas');
+    $myCanvas.drawRect({
+        fillStyle: 'white',
+        layer: false,
+        fromCenter: false,
+        x:50, y:50,
+        width:800, height:200,
+        name: 'raceTrack',
+      });
+    $myCanvas.drawRect({
+      fillStyle: 'red',
+      layer: true,
+      x: 50, y:125,
+      width: 75, height: 40,
+      name: 'redCar',
+    });
+    $myCanvas.drawRect({
+      fillStyle: 'blue',
+      layer: true,
+      x: 50, y:75,
+      width: 75, height: 40,
+      name: 'blueCar',
+    });
+    $myCanvas.animateLayer('blueCar', 'redCar', {
+      x: 550, y:75,
+    });
+  });
+  </script>
 </head>
 <body>
-
+  <canvas id="myCanvas" width="600" height="250">This is fallback content for those who can't handle canvas such as older browsers or screen readers or other assistive devices.</canvas>
+  <button type="button" name="replay">Replay</button>
 </body>
 </html>
