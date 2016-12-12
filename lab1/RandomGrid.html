@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Random Grid</title>
+</head>
+<body>
+  <input type="text" id="num" />
+  <input type="button" id="gengrid" value="Generate Grid">
+
+<div id="results">
+<script type="text/javascript">
+
+  var addButton = document.getElementById("gengrid");
+  addButton.onclick = function(e) {
+
+
+  var results = document.getElementById('results');
+  addButton.onclick = function(e) {
+
+  const N = document.getElementById("num").value;
+
+
+  var random = function (min, max)
+  {
+    return Math.floor (Math.random() * (max - min + 1)) + min;
+  }
+
+  var str = "<table cellpadding='5' cellspacing='5'>";
+    for (i = 0; i < N; i++) {
+      str += "<tr>";
+      for (j=0; j < N; j++) {
+        var randomNumber = random(1,100)
+        if (randomNumber %3 == 0) {
+          str += "<td bgcolor = #0000ff>" + randomNumber + "</td>";
+        }
+        else if (randomNumber %2 == 0) {
+          str += "<td bgcolor = #ff0000>" + randomNumber + "</td>";
+        }
+        else {
+          str += "<td>" + randomNumber + "</td>";
+        }
+
+      }
+      str += "</tr>";
+      }
+  str += "</table>";
+  results.innerHTML = str;
+}
+}
+</script>
+  </div>
+  </body>
+</html>
