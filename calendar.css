@@ -1,0 +1,16 @@
+#results
+{
+  margin-top: 1%;
+}
+
+.available
+{
+  background-color: #4CAF50;
+
+}
+
+.unavailable
+{
+  background-color: #f44336;
+
+}
