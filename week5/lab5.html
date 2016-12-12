@@ -51,8 +51,8 @@
         actor.gender = gender;
         actor.genre = genre;
         console.log(actor);
-        localStorage.setItem('actors', JSON.stringify, actors);
-        console.log( JSON.parse (localStorage.getItem(actors) ) );
+        //localStorage.setItem('actors', JSON.stringify, actors);
+        //console.log( JSON.parse (localStorage.getItem(actors) ) );
         $('#actors').append('<p id=output>' + actor.Fname + " " + actor.Lname + " " + actor.dob +
       " " + actor.gender + " " + actor.genre + '</p>');
 
@@ -69,11 +69,63 @@
 
       });
 
-    $(function() {
-      var update = $('#actorForm');
-      $('#update').on('click', function() {
-        // where you add editing functionality
-      });
+      function updateClick(pId)
+      {
+        var Fname = $('#Fname').val();
+        var Lname = $('#Lname').val();
+        var dobMonth = $('#month option:selected').text();
+        var dobDay = $('#day option:selected').text();
+        var dobYear = $('#year option:selected').text();
+        var dob = dobMonth + " " + dobDay +  " " + dobYear;
+
+        var gender = " ";
+        if ($('#male').prop('checked'))
+        {
+          gender = "Male";
+
+        }
+        else if ($('#female').prop('checked'))
+        {
+          gender = "Female";
+        }
+
+
+        var genre = "";
+        if ($('#action').is(':checked'))
+        {
+          genre += "Action ";
+        }
+        if ($('#comedy').is(':checked'))
+        {
+          genre += "Comedy ";
+        }
+        if ($('#drama').is(':checked'))
+        {
+          genre += "Drama ";
+        }
+        if ($('#scifi').is(':checked'))
+        {
+          genre += "Science Fiction ";
+        }
+
+        actors[pId].Fname = Fname.value;
+        actors[pId].Lname = Lname.value;
+        actors[pId].dob = dob.value;
+        actors[pId].gender = gender.value;
+        actors[pId].genre = genre.value;
+      }
+
+      function populateFields(pId)
+      {
+        alert(pId);
+         $('#Fname').val(actors[pId].Fname);
+         $('#Lname').val(actors[pId].Lname);
+         $('#dobDay').val(actors[pId].dobDay);
+         $('#dobMonth').val(actors[pId].dobMonth);
+         $('#dobYear').val(actors[pId].dobYear);
+         $('#gender').val(actors[pId].gender);
+         $('#genre').val(actors[pId].gender);
+      }
 
 
       });
