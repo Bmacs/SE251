@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <style>
+    .actorPar:hover{
+      background:#cdcdcd;
+    }
+  </style>
+</head>
+<body>
+  <div id="actorForm">
+    First Name: <input type="text" id="Fname" /><br />
+    Last Name: <input type="text" id="Lname" /><br />
+    Date of Birth:<br>
+    <select id="month">
+      <option value="option">January</option>
+      <option value="option">February</option>
+      <option value="option">March</option>
+      <option value="option">April</option>
+      <option value="option">May</option>
+      <option value="option">June</option>
+      <option value="option">July</option>
+      <option value="option">August</option>
+      <option value="option">September</option>
+      <option value="option">October</option>
+      <option value="option">November</option>
+      <option value="option">December</option>
+    </select>
+    <select id="day">
+      <option value="option">1</option>
+      <option value="option">2</option>
+      <option value="option">3</option>
+      <option value="option">4</option>
+      <option value="option">5</option>
+      <option value="option">6</option>
+      <option value="option">7</option>
+      <option value="option">8</option>
+      <option value="option">9</option>
+      <option value="option">10</option>
+      <option value="option">11</option>
+      <option value="option">12</option>
+      <option value="option">13</option>
+      <option value="option">14</option>
+      <option value="option">15</option>
+      <option value="option">16</option>
+      <option value="option">17</option>
+      <option value="option">18</option>
+      <option value="option">19</option>
+      <option value="option">20</option>
+      <option value="option">21</option>
+      <option value="option">22</option>
+      <option value="option">23</option>
+      <option value="option">24</option>
+      <option value="option">25</option>
+      <option value="option">26</option>
+      <option value="option">27</option>
+      <option value="option">28</option>
+      <option value="option">29</option>
+      <option value="option">30</option>
+      <option value="option">31</option>
+    </select>
+    <select id="year">
+
+      <option value="option">1945</option>
+      <option value="option">1946</option>
+      <option value="option">1947</option>
+      <option value="option">1948</option>
+      <option value="option">1949</option>
+      <option value="option">1950</option>
+      <option value="option">1951</option>
+      <option value="option">1952</option>
+      <option value="option">1953</option>
+      <option value="option">1954</option>
+      <option value="option">1955</option>
+      <option value="option">1956</option>
+      <option value="option">1957</option>
+      <option value="option">1958</option>
+      <option value="option">1959</option>
+      <option value="option">1960</option>
+      <option value="option">1961</option>
+      <option value="option">1962</option>
+      <option value="option">1963</option>
+      <option value="option">1964</option>
+      <option value="option">1965</option>
+      <option value="option">1966</option>
+      <option value="option">1967</option>
+      <option value="option">1968</option>
+      <option value="option">1969</option>
+      <option value="option">1970</option>
+      <option value="option">1971</option>
+      <option value="option">1972</option>
+      <option value="option">1973</option>
+      <option value="option">1974</option>
+      <option value="option">1975</option>
+      <option value="option">1976</option>
+      <option value="option">1977</option>
+      <option value="option">1978</option>
+      <option value="option">1979</option>
+      <option value="option">1980</option>
+      <option value="option">1981</option>
+      <option value="option">1982</option>
+      <option value="option">1983</option>
+      <option value="option">1984</option>
+      <option value="option">1985</option>
+      <option value="option">1986</option>
+      <option value="option">1987</option>
+      <option value="option">1988</option>
+      <option value="option">1989</option>
+      <option value="option">1990</option>
+      <option value="option">1991</option>
+      <option value="option">1992</option>
+      <option value="option">1993</option>
+      <option value="option">1994</option>
+      <option value="option">1995</option>
+      <option value="option">1996</option>
+      <option value="option">1997</option>
+      <option value="option">1998</option>
+      <option value="option">1999</option>
+      <option value="option">2000</option>
+      <option value="option">2001</option>
+      <option value="option">2002</option>
+      <option value="option">2003</option>
+      <option value="option">2004</option>
+      <option value="option">2005</option>
+    </select> <br>
+
+
+    Gender:<br>
+    <input type="radio" id="male"> Male
+    <input type="radio" id="female"> Female <br>
+
+    Genre: <br>
+      <input type="checkbox" id="action">Action</input> <br>
+      <input type="checkbox" id="comedy">Comedy</input> <br>
+      <input type="checkbox" id="drama">Drama</input> <br>
+      <input type="checkbox" id="scifi">Science Fiction</input>
+    <br>
+
+    <input type="button" id="addActor" data-actor='' class='myButtonGroup' value="Add Actor"><br />
+    <input type="button" id="update" data-actor='' class='myButtonGroup' value="Update Actor" style="visibility:hidden"><br />
+    <input type="button" id="delete" data-actor='' class='myButtonGroup' value="Delete Actor" style="visibility:hidden"><br />
+  </div>
+
+  <div id="actors">
+
+  </div>
+
+</body>
+
+</html>
+
+
+<script>
+var actors = [];
+//Run once page loads
+$(function(){
+  getActors();
+
+  $('.myButtonGroup').on('click', function(){
+    var type = this.id;
+    var actor = $(this).data('actor');
+    switch(type){
+      case 'delete':
+        console.log($(this).data('actor'));
+        deleteActor(actor);
+        break;
+
+      case 'update':
+        updateClick(actor);
+        break;
+
+      case 'add':
+        console.log('later');
+        break;
+    }
+  });
+
+  $('#addActor').on('click', function addActor(){
+    var Fname = $('#Fname').val();
+    var Lname = $('#Lname').val();
+    var dobMonth = $('#month option:selected').text();
+    var dobDay = $('#day option:selected').text();
+    var dobYear = $('#year option:selected').text();
+    var dob = dobMonth + " " + dobDay +  " " + dobYear;
+
+    var gender = " ";
+    if ($('#male').prop('checked')){
+      gender = "Male";
+    }
+    else if ($('#female').prop('checked')){
+      gender = "Female";
+    }
+
+
+    var genre = "";
+    if ($('#action').is(':checked')){
+      genre += "Action ";
+    }
+    if ($('#comedy').is(':checked')){
+      genre += "Comedy ";
+    }
+    if ($('#drama').is(':checked')){
+      genre += "Drama ";
+    }
+    if ($('#scifi').is(':checked')){
+      genre += "Science Fiction ";
+    }
+
+    nameCheck(Fname, Lname)
+
+    var actor = {Fname: Fname, Lname: Lname, dob: dob, gender: gender, genre: genre};
+    actors.push(actor);
+    console.log(actor);
+
+    var string = JSON.stringify(actor);
+
+    $.post('DisplayActors.php', {data:string}, function(data){
+      console.log(string, data);
+    });
+
+    console.log(actors);
+    getActors();
+    $('#male').prop('checked', false);
+    $('#female').prop('checked', false);
+  });
+
+  function deleteClick()
+  {
+
+    var pId = $(this).attr('id');
+
+    // splice a row
+    actors.splice(pId,1)
+
+    console.log(actors);
+
+    printActors();
+
+
+  }
+
+
+
+  function populateFields(pId){
+     $('#Fname').val(actors[pId].Fname);
+     $('#Lname').val(actors[pId].Lname);
+     $('#dobDay').val(actors[pId].dobDay);
+     $('#dobMonth').val(actors[pId].dobMonth);
+     $('#dobYear').val(actors[pId].dobYear);
+     $('#gender').val(actors[pId].gender);
+     $('#genre').val(actors[pId].gender);
+  }
+
+
+  function deleteActor(pId){
+    $.post('deletePlease.php', {pId:pId}, function(data){
+      console.log(data);
+      displayActorsForReal(data);
+    });
+  }
+
+  function getActors(){
+    $.post('getActors.php', {}, function(data){
+      console.log(data);
+      displayActorsForReal(data);
+    });
+  }
+
+  function displayActorsForReal(actorsJSON){
+    $('#actors').html('');
+    actors = JSON.parse(actorsJSON);
+    actors.forEach(function(actor){
+        newPar = `<p class='actorPar' id='${actor.id}'>${actor.Fname} ${actor.Lname} ${actor.dob} ${actor.gender}  ${actor.genre}</p>`;
+        $('#actors').append(newPar);
+
+        $('#' + actor.id).on('click', function(){
+          console.log('SELECTED ACTOR!: ' + $(this).text());
+
+          $('#update').css('visibility', 'visible');
+          $('#delete').css('visibility', 'visible');
+
+          var pId = $(this).attr('id');
+          $('.myButtonGroup').data('actor', pId);//lol
+          populateFields(pId);
+        })
+    });
+  }
+
+
+  function nameCheck(Fname, Lname)
+  {
+    var check = /^[a-zA-Z]*$/;
+
+    if (check.test(Fname) === false || check.test(Lname) === false){
+        alert("Enter characters a-z in first name and last name");
+      }
+    else{
+      alert(Fname + "" + Lname)
+    }
+  }
+
+  function updateClick(pId){
+    var Fname = $('#Fname').val();
+    var Lname = $('#Lname').val();
+    var dobMonth = $('#month option:selected').text();
+    var dobDay = $('#day option:selected').text();
+    var dobYear = $('#year option:selected').text();
+    var dob = dobMonth + " " + dobDay +  " " + dobYear;
+
+    var gender = " ";
+    if ($('#male').prop('checked'))
+    {
+      gender = "Male";
+
+    }
+    else if ($('#female').prop('checked'))
+    {
+      gender = "Female";
+    }
+
+
+    var genre = "";
+    if ($('#action').is(':checked'))
+    {
+      genre += "Action ";
+    }
+    if ($('#comedy').is(':checked'))
+    {
+      genre += "Comedy ";
+    }
+    if ($('#drama').is(':checked'))
+    {
+      genre += "Drama ";
+    }
+    if ($('#scifi').is(':checked'))
+    {
+      genre += "Science Fiction ";
+    }
+
+    actors[pId].Fname = Fname.value;
+    actors[pId].Lname = Lname.value;
+    actors[pId].dob = dob.value;
+    actors[pId].gender = gender.value;
+    actors[pId].genre = genre.value;
+  }
+});
+</script>

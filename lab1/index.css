@@ -14,9 +14,7 @@ a {
 }
 
 body {
-  background-image:url(bg.jpg);
-  background-size: cover;
-  background-repeat: no-repeat;
+  background-color: #33373d;
   margin-top: 10%;
   font-family: 'Roboto', sans-serif;
   text-align:center;
@@ -26,5 +24,12 @@ table {
   color: white;
   margin-left:auto;
   margin-right:auto;
-  width:70%; 
+  width:100%;
+}
+
+.badges {
+  text-align: center;
+  margin-left:auto;
+  width:100%;
+  align-content: center;
 }
