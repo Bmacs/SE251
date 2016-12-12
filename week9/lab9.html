@@ -5,6 +5,7 @@
   <title>Lab9</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="jcanvas.min.js" type="text/javascript"></script>
+<<<<<<< HEAD
   <script type="text/javascript">
   $(function () {
     var $myCanvas = $('#myCanvas');
@@ -40,4 +41,74 @@
   <canvas id="myCanvas" width="600" height="250">This is fallback content for those who can't handle canvas such as older browsers or screen readers or other assistive devices.</canvas>
   <button type="button" name="replay">Replay</button>
 </body>
+=======
+
+</head>
+<body>
+  <canvas id="myCanvas" width="600" height="250">This is fallback content for those who can't handle canvas such as older browsers or screen readers or other assistive devices.</canvas>
+  <button type="button" id="replay" name="replay">Replay</button>
+  <button type="button" id="reload" name="button">Reset</button>
+  <div class="results">
+
+  </div>
+</body>
+<script type="text/javascript">
+
+$(function() {
+    var $replay = $('#replay');
+
+  $("#myCanvas").drawRect({
+      fillStyle: 'white',
+      layer: false,
+      fromCenter: false,
+      x:50, y:50,
+      width:800, height:200,
+      name: 'raceTrack',
+    }).drawRect({
+    fillStyle: 'red',
+    layer: true,
+    x: 50, y:125,
+    width: 75, height: 40,
+    name: 'redCar',
+  }).drawRect({
+    fillStyle: 'blue',
+    layer: true,
+    x: 50, y:75,
+    width: 75, height: 40,
+    name: 'blueCar',
+  });
+});
+
+var ran = Math.ceil(Math.random() * 4000 + 1000);
+var ran2 = Math.ceil(Math.random() * 4000 + 1000);
+
+
+
+
+/* Act on the event */
+$("#replay").on('click',
+    function race(){
+    $("#myCanvas").animateLayer('blueCar', {
+      x:550, y:75},ran2)
+      .animateLayer('redCar', {
+      x:550, y:125
+    },ran)
+      setTimeout(function(){ determine() }, 5000);
+});
+
+$("#reload").on('click', function(){
+  location.reload();
+});
+
+function determine()
+{
+  if(ran>ran2){
+    alert("Blue won!");
+  }
+  if(ran<ran2){
+    alert("Red won!");
+  }
+}
+</script>
+>>>>>>> week7
 </html>
