@@ -14,14 +14,17 @@
         var dobDay = $('#day option:selected').text();
         var dobYear = $('#year option:selected').text();
 
-        var gender = $('#gender').val();
-        if ($('#male').checked)
+        var gender = " ";
+        if ($('#male').prop('checked'))
         {
           gender = "Male";
+
+
         }
-        else
+        else if ($('#female').prop('checked'))
         {
           gender = "Female";
+
         }
 
 
@@ -51,8 +54,6 @@
         actor.gender = gender;
         actor.genre = genre;
         console.log(actor);
-        //localStorage.setItem('actors', JSON.stringify, actors);
-        //console.log( JSON.parse (localStorage.getItem(actors) ) );
         $('#actors').append('<p id=output>' + actor.Fname + " " + actor.Lname + " " + actor.dob +
       " " + actor.gender + " " + actor.genre + '</p>');
 
@@ -69,8 +70,9 @@
 
       });
 
-      function updateClick(pId)
-      {
+    $(function() {
+      var update = $('#actorForm');
+      $('#update').on('click', function() {
         var Fname = $('#Fname').val();
         var Lname = $('#Lname').val();
         var dobMonth = $('#month option:selected').text();
@@ -113,19 +115,7 @@
         actors[pId].dob = dob.value;
         actors[pId].gender = gender.value;
         actors[pId].genre = genre.value;
-      }
-
-      function populateFields(pId)
-      {
-        alert(pId);
-         $('#Fname').val(actors[pId].Fname);
-         $('#Lname').val(actors[pId].Lname);
-         $('#dobDay').val(actors[pId].dobDay);
-         $('#dobMonth').val(actors[pId].dobMonth);
-         $('#dobYear').val(actors[pId].dobYear);
-         $('#gender').val(actors[pId].gender);
-         $('#genre').val(actors[pId].gender);
-      }
+      });
 
 
       });
