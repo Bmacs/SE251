@@ -162,7 +162,7 @@ window.onload = function()
 
     //JSON.parse('actor');
   }
-
+  printActors();
   $('#addActor').on('click', addActor);
 
 }
@@ -257,7 +257,8 @@ function deleteClick(pId)
 
   // splice a row
   actors.splice(pId, 1);
-
+  localStorage.removeItem('actors'[pId]);
+  console.log("Deleted local actor");
   console.log(actors);
 
   printActors();
