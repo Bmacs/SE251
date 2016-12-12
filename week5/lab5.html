@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Document</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<<<<<<< HEAD
   <script>
     $(function() {
       var actors = []
@@ -121,6 +122,9 @@
       });
     });
   </script>
+=======
+
+>>>>>>> week7
 </head>
 <body>
   <div id="actorForm">
@@ -240,8 +244,8 @@
 
 
     Gender:<br>
-    <input type="radio" id="male" value="Male"> Male
-    <input type="radio" id="female" value="Female"> Female <br>
+    <input type="radio" id="male"> Male
+    <input type="radio" id="female"> Female <br>
 
     Genre: <br>
       <input type="checkbox" id="action">Action</input> <br>
@@ -251,8 +255,8 @@
     <br>
 
     <input type="button" id="addActor" value="Add Actor"><br />
-    <input type="button" id="update" value="Update Actor"><br />
-    <input type="button" id="delete" value="Delete Actor"><br />
+    <input type="button" id="update" value="Update Actor" style="visibility:hidden"><br />
+    <input type="button" id="delete" value="Delete Actor" style="visibility:hidden"><br />
   </div>
 
   <div id="actors">
@@ -261,3 +265,164 @@
 
 </body>
 </html>
+
+
+<script>
+var actors = [];
+window.onload = function()
+{
+  $('#addActor').on('click', addActor);
+}
+
+function addActor()
+{
+  var Fname = $('#Fname').val();
+  var Lname = $('#Lname').val();
+  var dobMonth = $('#month option:selected').text();
+  var dobDay = $('#day option:selected').text();
+  var dobYear = $('#year option:selected').text();
+  var dob = dobMonth + " " + dobDay +  " " + dobYear;
+
+  var gender = " ";
+  if ($('#male').prop('checked'))
+  {
+    gender = "Male";
+
+  }
+  else if ($('#female').prop('checked'))
+  {
+    gender = "Female";
+  }
+
+
+  var genre = "";
+  if ($('#action').is(':checked'))
+  {
+    genre += "Action ";
+  }
+  if ($('#comedy').is(':checked'))
+  {
+    genre += "Comedy ";
+  }
+  if ($('#drama').is(':checked'))
+  {
+    genre += "Drama ";
+  }
+  if ($('#scifi').is(':checked'))
+  {
+    genre += "Science Fiction ";
+  }
+  var actor = {Fname: Fname, Lname: Lname, dob: dob, gender: gender, genre: genre};
+
+  //console.log(actor);
+  //localStorage.setItem('actors', JSON.stringify, actors);
+  //console.log( JSON.parse (localStorage.getItem(actors) ) );
+
+  actors.push (actor);
+  console.log(actors);
+
+  printActors();
+}
+
+function printActors()
+{
+  $('#actors').empty();
+  for(var i = 0; i < actors.length; i++)
+  {
+      $('#actors').append('<p id="'+ i + '">' + actors[i].Fname + " " + actors[i].Lname + " " + actors[i].dob +
+    " " + actors[i].gender + " " + actors[i].genre + '</p>');
+  }
+
+  $('p').on('click', function()
+  {
+    alert($(this).text());
+
+    $('#update').css('visibility', 'visible');
+    $('#delete').css('visibility', 'visible');
+
+    var pId = $(this).attr('id');
+
+    populateFields(pId);
+    $('#update').on('click', function() { updateClick(pId);});
+    $('#delete').on('click', function() { deleteClick(pId);}); //change to delete function
+
+
+
+
+  })
+}
+
+function deleteClick()
+{
+
+  var pId = $(this).attr('id');
+
+  // splice a row
+  actors.splice(pId,1)
+
+  console.log(actors);
+
+  printActors();
+
+
+}
+
+function updateClick(pId)
+{
+  var Fname = $('#Fname').val();
+  var Lname = $('#Lname').val();
+  var dobMonth = $('#month option:selected').text();
+  var dobDay = $('#day option:selected').text();
+  var dobYear = $('#year option:selected').text();
+  var dob = dobMonth + " " + dobDay +  " " + dobYear;
+
+  var gender = " ";
+  if ($('#male').prop('checked'))
+  {
+    gender = "Male";
+
+  }
+  else if ($('#female').prop('checked'))
+  {
+    gender = "Female";
+  }
+
+
+  var genre = "";
+  if ($('#action').is(':checked'))
+  {
+    genre += "Action ";
+  }
+  if ($('#comedy').is(':checked'))
+  {
+    genre += "Comedy ";
+  }
+  if ($('#drama').is(':checked'))
+  {
+    genre += "Drama ";
+  }
+  if ($('#scifi').is(':checked'))
+  {
+    genre += "Science Fiction ";
+  }
+
+  actors[pId].Fname = Fname.value;
+  actors[pId].Lname = Lname.value;
+  actors[pId].dob = dob.value;
+  actors[pId].gender = gender.value;
+  actors[pId].genre = genre.value;
+}
+
+function populateFields(pId)
+{
+  alert(pId);
+   $('#Fname').val(actors[pId].Fname);
+   $('#Lname').val(actors[pId].Lname);
+   $('#dobDay').val(actors[pId].dobDay);
+   $('#dobMonth').val(actors[pId].dobMonth);
+   $('#dobYear').val(actors[pId].dobYear);
+   $('#gender').val(actors[pId].gender);
+   $('#genre').val(actors[pId].gender);
+}
+
+</script>
