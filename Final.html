@@ -123,8 +123,8 @@
     <option value="option">2005</option>
   </select> <br>
   Gender: <br>
-  Male <input type="radio" name=""> <br>
-  Female <input type="radio" name=""> <br>
+  Male <input type="radio" id="male"> <br>
+  Female <input type="radio" id="female"> <br>
   Date of Appointment:
   <select id="month2">
     <option value="option">January</option>
@@ -174,77 +174,17 @@
     <option value="option">31</option>
   </select>
   <select id="year2">
-
-    <option value="option">1945</option>
-    <option value="option">1946</option>
-    <option value="option">1947</option>
-    <option value="option">1948</option>
-    <option value="option">1949</option>
-    <option value="option">1950</option>
-    <option value="option">1951</option>
-    <option value="option">1952</option>
-    <option value="option">1953</option>
-    <option value="option">1954</option>
-    <option value="option">1955</option>
-    <option value="option">1956</option>
-    <option value="option">1957</option>
-    <option value="option">1958</option>
-    <option value="option">1959</option>
-    <option value="option">1960</option>
-    <option value="option">1961</option>
-    <option value="option">1962</option>
-    <option value="option">1963</option>
-    <option value="option">1964</option>
-    <option value="option">1965</option>
-    <option value="option">1966</option>
-    <option value="option">1967</option>
-    <option value="option">1968</option>
-    <option value="option">1969</option>
-    <option value="option">1970</option>
-    <option value="option">1971</option>
-    <option value="option">1972</option>
-    <option value="option">1973</option>
-    <option value="option">1974</option>
-    <option value="option">1975</option>
-    <option value="option">1976</option>
-    <option value="option">1977</option>
-    <option value="option">1978</option>
-    <option value="option">1979</option>
-    <option value="option">1980</option>
-    <option value="option">1981</option>
-    <option value="option">1982</option>
-    <option value="option">1983</option>
-    <option value="option">1984</option>
-    <option value="option">1985</option>
-    <option value="option">1986</option>
-    <option value="option">1987</option>
-    <option value="option">1988</option>
-    <option value="option">1989</option>
-    <option value="option">1990</option>
-    <option value="option">1991</option>
-    <option value="option">1992</option>
-    <option value="option">1993</option>
-    <option value="option">1994</option>
-    <option value="option">1995</option>
-    <option value="option">1996</option>
-    <option value="option">1997</option>
-    <option value="option">1998</option>
-    <option value="option">1999</option>
-    <option value="option">2000</option>
-    <option value="option">2001</option>
-    <option value="option">2002</option>
-    <option value="option">2003</option>
-    <option value="option">2004</option>
-    <option value="option">2005</option>
+    <option value="option">2017</option>
+    <option value="option">2018</option>
   </select>
   <input type="time" id="time"> <br>
   Email: <input type="text" id="email"> <br>
   Town:
   <select id="town">
-    <option value="option">Manhatten</option>
     <option value="option">New Haven</option>
-    <option value="option">Boston</option>
+    <option value="option">Manhatten</option>
     <option value="option">Providence</option>
+    <option value="option">Boston</option>
   </select> <br>
   State:
   <select id="state">
@@ -257,6 +197,9 @@
   <input type="text" id="phone"> <br>
   <button type="button" id="submit">Submit</button>
   </div>
+  <div class="confirmed">
+
+  </div>
 </body>
 </html>
 
@@ -265,31 +208,50 @@
 
   $(function(){
     $('#submit').on('click', function sendform(){
-      var name = $('#fName').val() + $('#mName').val() + $('#lName').val();
+      var name = $('#fName').val() + " " + $('#mName').val() + " " + $('#lName').val();
       var dobMonth = $('#month option:selected').text();
       var dobDay = $('#day option:selected').text();
       var dobYear = $('#year option:selected').text();
-      var dob = dobMonth + " " + dobDay +  " " + dobYear;
+      var dob = dobMonth + " " + dobDay +  "," + dobYear;
       var dobMonth2 = $('#month2 option:selected').text();
       var dobDay2 = $('#day2 option:selected').text();
       var dobYear2 = $('#year2 option:selected').text();
-      var doa = dobMonth + " " + dobDay +  " " + dobYear;
+      var time = $('#time').val();
+      var doa = dobMonth2 + " " + dobDay2 +  "," + dobYear2 + " " + time;
+      var state = $('#state option:selected').text();
+      var town = $('#town option:selected').text();
+      var number = $('#phone').val();
+      var email = $('#email').val();
+
+      var gender = " ";
+      if ($('#male').prop('checked')){
+        gender = "Male";
+      }
+      else if ($('#female').prop('checked')){
+        gender = "Female";
+      }
+
+      var appoint = name + " " + dob + " " + gender + " " + doa + " " + email + " " + town + " " +
+      state + " " + number;
+
+      var appointappend = '<p>''</p>'
+
+      if (confirm("Is this correct?\n" + appoint)) {
+      alert('Thanks for confirming');
+      console.log(appoint);
+      $('#confirmed').append(appoint);
+      } else {
+      alert('Action Canceled');
+      }
 
 
-      console.log(name + " " + dob + " " + doa);
+
+      $('#male').prop('checked', false);
+      $('#female').prop('checked', false);
     });
   });
 </script>
 
-
-Name (First, Middle, Last)
-Gender
-Birthday
-Appointment Day (Day of the week, Date)
-Email
-Town
-State
-Telephone
 
 Arrays - Information would be inserted into an array upon clicking submit
 DOM manipulation - Inserting the array into div after clicking submit
