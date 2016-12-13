@@ -1,0 +1,14 @@
+#myCanvas{
+width:375px;
+height:300px;
+}
+
+.confirmed {
+  width: 550px;
+  float: right;
+}
+
+#form {
+  width: 450px;
+  float: left;
+}

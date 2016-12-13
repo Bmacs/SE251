@@ -4,8 +4,11 @@
   <meta charset="UTF-8">
   <title>Document</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="jcanvas.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="Final.css">
 </head>
 <body>
+
   <div id="form">
   First Name:  <input type="text" id="fName"> <br>
   Middle Name:<input type="text" id="mName"> <br>
@@ -197,8 +200,9 @@
   <input type="text" id="phone"> <br>
   <button type="button" id="submit">Submit</button>
   </div>
-  <div class="confirmed">
 
+  <div class="confirmed">
+    <canvas id="myCanvas"></canvas>
   </div>
 </body>
 </html>
@@ -234,7 +238,7 @@
       var appoint = name + " " + dob + " " + gender + " " + doa + " " + email + " " + town + " " +
       state + " " + number;
 
-      var appointappend = '<p>''</p>'
+    //  var appointappend = '<p>''</p>'
 
       if (confirm("Is this correct?\n" + appoint)) {
       alert('Thanks for confirming');
@@ -249,11 +253,27 @@
       $('#male').prop('checked', false);
       $('#female').prop('checked', false);
     });
+
+      $("#myCanvas").drawRect({
+        fillStyle: 'black',
+        layer: true,
+        fromCenter: false,
+        x:50, y:50,
+        width:275, height:15,
+        name: 'block1',
+      }).drawRect({
+        fillStyle: 'red',
+        layer: true,
+        fromCenter: false,
+        x:50, y:50,
+        width:25, height:15,
+        name: 'load',
+      });
+
+
+      $('#myCanvas').animateLayer('load',{
+        x:275, y:50,
+      },5000);
+
   });
 </script>
-
-
-Arrays - Information would be inserted into an array upon clicking submit
-DOM manipulation - Inserting the array into div after clicking submit
-HTML 5 Canvas - animation
-JQuery - Written using JQuery syntax
