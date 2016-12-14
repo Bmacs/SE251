@@ -238,11 +238,19 @@
       var appoint = name + " " + dob + " " + gender + " " + doa + " " + email + " " + town + " " +
       state + " " + number;
 
-    //  var appointappend = '<p>''</p>'
+      var apts = {Name: name, DateOfBirth: dob, Gender: gender, DateofAppointment: doa, Email: email, Town: town, State: state, PhoneNumber: number};
+
 
       if (confirm("Is this correct?\n" + appoint)) {
       alert('Thanks for confirming');
       console.log(appoint);
+      apt.push (apts);
+
+      $('#confirmed').empty();
+      for (var i = 0; i < apt.length; i++) {
+        $('#confirmed').append('<p id="'+ i + '">' + apt[i].name + " " + apt[i].dob + " " + apt[i].gender +
+      " " + apt[i].doa + " " + apt[i].email + " " + apt[i].town + " " + apt[i].state + " " + apt[i].number + '</p>');
+      }
       $('#confirmed').append(appoint);
       } else {
       alert('Action Canceled');
@@ -254,7 +262,7 @@
       $('#female').prop('checked', false);
     });
 
-      $("#myCanvas").drawRect({
+    /*  $("#myCanvas").drawRect({
         fillStyle: 'black',
         layer: true,
         fromCenter: false,
@@ -274,6 +282,6 @@
       $('#myCanvas').animateLayer('load',{
         x:275, y:50,
       },5000);
-
+    */
   });
 </script>
