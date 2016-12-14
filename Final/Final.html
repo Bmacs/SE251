@@ -252,10 +252,9 @@
 
       $('#confirmed').empty();
       for (var i = 0; i < apt.length; i++) {
-        $('#confirmed').append('<p id="'+ i + '">' + apt[i].name + " " + apt[i].dob + " " + apt[i].gender +
-      " " + apt[i].doa + " " + apt[i].email + " " + apt[i].town + " " + apt[i].state + " " + apt[i].number + '</p>');
+        $('#confirmed').append('<p id="'+ i + '">' + apt[i].Name + " " + apt[i].DateOfBirth + " " + apt[i].Gender +
+      " " + apt[i].DateofAppointment + " " + apt[i].Email + " " + apt[i].Town + " " + apt[i].State + " " + apt[i].PhoneNumber + '</p>');
       }
-      $('#confirmed').append(appoint);
       } else {
       alert('Action Canceled');
       }
